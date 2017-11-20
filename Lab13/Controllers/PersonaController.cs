@@ -46,5 +46,35 @@ namespace Lab13.Controllers
             });
             return View(personas);
         }
+
+        public ActionResult Mostrar(int id)
+        {
+            List<Persona> personas = new List<Persona>();
+            personas.Add(new Persona
+            {
+                PersonaID = 1,Nombre = "Raydy",Apellido = "Ponce",
+                Direccion = "Av Los geranios",
+                FechaNac = Convert.ToDateTime("1994-01-23"),
+                Email = "ponce@hotmail.com"
+            });
+            personas.Add(new Persona
+            {
+                PersonaID = 2,Nombre = "Sam",Apellido = "Ponce",
+                Direccion = "Av Los geanios",
+                FechaNac = Convert.ToDateTime("2001-01-23"),
+                Email = "ponoe@hotmail.com"
+            });
+            personas.Add(new Persona
+            {
+                PersonaID = 3,Nombre = "efe",Apellido = "perez",
+                Direccion = "Av Los granios",
+                FechaNac = Convert.ToDateTime("1974-01-23"),
+                Email = "perez@hotmail.com"
+            });
+
+            Persona persona = (from p in personas where p.PersonaID == id
+                               select p).FirstOrDefault();
+            return View(persona);
+        }
     }
 }
